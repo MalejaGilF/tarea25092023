@@ -1,0 +1,113 @@
+
+Personas> show.collections.personas1
+TypeError: Cannot read properties of undefined (reading 'personas1')
+Personas> db.personas1.find()
+[
+  {
+    _id: ObjectId("6528964c557a1691d61b40dd"),
+    Nombre: 'juan perez',
+    edad: 31,
+    ciudad: 'Nueva York'
+  },
+  {
+    _id: ObjectId("6528a9a9382f84925493506e"),
+    Nombre: 'Maria Gonzales',
+    edad: 35,
+    ciudad: 'Los Angeles'
+  },
+  {
+    _id: ObjectId("6528a9c9382f84925493506f"),
+    Nombre: 'Carlos Ramirez',
+    edad: 28,
+    ciudad: 'Nueva York'
+  }
+]
+Personas> db.personas1.updateMany({$or:[{nombre:'juan perez',ciudad:'Nueva York'}, {nombre:'Carlos Ramirez',ciudad:'Nueva York'}]},{$set:{ciudad:'Los Angeles'}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+Personas> db.personas1.updateMany(  { ciudad: 'Nueva York' }, { $set: { ciudad: 'Los Angeles' } }  );
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+Personas> db.personas1.find()
+[
+  {
+    _id: ObjectId("6528964c557a1691d61b40dd"),
+    Nombre: 'juan perez',
+    edad: 31,
+    ciudad: 'Los Angeles'
+  },
+  {
+    _id: ObjectId("6528a9a9382f84925493506e"),
+    Nombre: 'Maria Gonzales',
+    edad: 35,
+    ciudad: 'Los Angeles'
+  },
+  {
+    _id: ObjectId("6528a9c9382f84925493506f"),
+    Nombre: 'Carlos Ramirez',
+    edad: 28,
+    ciudad: 'Los Angeles'
+  }
+]
+Personas> db.Personas.find({edad:{$gt:25}})
+
+Personas> db.personas1.find({edad:{$gt:25}})
+[
+  {
+    _id: ObjectId("6528964c557a1691d61b40dd"),
+    Nombre: 'juan perez',
+    edad: 31,
+    ciudad: 'Los Angeles'
+  },
+  {
+    _id: ObjectId("6528a9a9382f84925493506e"),
+    Nombre: 'Maria Gonzales',
+    edad: 35,
+    ciudad: 'Los Angeles'
+  },
+  {
+    _id: ObjectId("6528a9c9382f84925493506f"),
+    Nombre: 'Carlos Ramirez',
+    edad: 28,
+    ciudad: 'Los Angeles'
+  }
+]
+Personas> db.personas1.updateOne({ Nombre: "juan perez" }, { $set: { edad: 40 } })
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+Personas> db.personas1.find()
+[
+  {
+    _id: ObjectId("6528964c557a1691d61b40dd"),
+    Nombre: 'juan perez',
+    edad: 40,
+    ciudad: 'Los Angeles'
+  },
+  {
+    _id: ObjectId("6528a9a9382f84925493506e"),
+    Nombre: 'Maria Gonzales',
+    edad: 35,
+    ciudad: 'Los Angeles'
+  },
+  {
+    _id: ObjectId("6528a9c9382f84925493506f"),
+    Nombre: 'Carlos Ramirez',
+    edad: 28,
+    ciudad: 'Los Angeles'
+  }
+]
