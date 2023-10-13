@@ -115,4 +115,7 @@ class Triangulo extends FiguraGeometrica{
 }
 const triangulo = new Triangulo(3,8,5);
 console.log("Area del triangulo",triangulo.darArea());
+
+
+
 console.log("Perimetro del triangulo",triangulo.darPerimetro());
